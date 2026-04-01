@@ -76,21 +76,7 @@
 </head>
 <body>
   <h1>Vastu Compass</h1>
-
-  <div class="container">
-    <div id="compassWrapper">
-      <div id="compassBg"></div>
-      <div class="label north">N</div>
-      <div class="label east">E</div>
-      <div class="label south">S</div>
-      <div class="label west">W</div>
-      
-      <div id="arrow"></div>
-    </div>
-
-    <div class="direction-label" id="reading">Heading: 0°</div>
-
-    <select id="roomSelect">
+  <select id="roomSelect">
       <option value="">Select Home Area</option>
       <option value="living">Living Room</option>
       <option value="bedroom">Bedroom</option>
@@ -98,6 +84,15 @@
       <option value="toilet">Toilet/Bathroom</option>
       <option value="puja">Puja Room</option>
     </select>
+  <div class="container">
+    <div id="compassWrapper">
+      <div id="compassBg"></div>
+      
+    </div>
+
+    <div class="direction-label" id="reading">Heading: 0°</div>
+
+    
 
     <div id="vastuResult" style="margin-top:20px; font-size:18px;"></div>
   </div>
