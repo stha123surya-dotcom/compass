@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    #compass {
+      width: 200px;
+      height: 200px;
+      border: 5px solid black;
+      border-radius: 50%;
+      margin: 50px auto;
+      position: relative;
+    }
+    #arrow {
+      width: 4px;
+      height: 90px;
+      background: red;
+      position: absolute;
+      top: 10px;
+      left: 50%;
+      transform-origin: bottom;
+    }
+  </style>
+</head>
+<body>
+
+<h2 style="text-align:center">Digital Compass</h2>
+<div id="compass">
+  <div id="arrow"></div>
+</div>
+
+<button onclick="requestPermission()">Enable Compass</button>
+
+<script>
+function requestPermission() {
+  if (DeviceOrientationEvent && DeviceOrientationEvent.requestPermission) {
+    // For iOS devices
+    DeviceOrientationEvent.requestPermission().then(response => {
+      if (response == "granted") {
+        window.addEventListener("deviceorientation", rotateCompass);
+      }
+    });
+  } else {
+    // Android devices
+    window.addEventListener("deviceorientation", rotateCompass);
+  }
+}
+
+function rotateCompass(event) {
+  let heading = event.alpha; // 0–360 degrees
+  if (typeof event.webkitCompassHeading !== "undefined") {
+    heading = event.webkitCompassHeading; // iOS fallback
+  }
+
+  document.getElementById("arrow").style.transform = `rotate(${heading}deg)`;
+}
+</script>
+
+</body>
+</html>
