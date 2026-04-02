@@ -1,4 +1,21 @@
 /* style.css */
+.suggestion-box {
+  margin: 25px auto;
+  padding: 20px;
+  width: 320px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.15);
+  text-align: left;
+}
+.suggestion-box h2 {
+  margin-top: 0;
+  font-size: 22px;
+}
+.suggestion-box p {
+  font-size: 18px;
+}
+
 body {
   background: #f3f6fa;
   font-family: Arial, sans-serif;

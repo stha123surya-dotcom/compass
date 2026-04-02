@@ -33,6 +33,11 @@ function updateCompass(event) {
       <b>Best rooms:</b> ${dir.best}<br>
       <b>Should avoid:</b> ${dir.avoid}
     `;
+    document.getElementById("suggestionText").innerHTML = `
+      <b>${dir.name}</b><br>
+      ✔ Best: ${dir.best}<br>
+      ✖ Avoid: ${dir.avoid}
+    `;
   }
 }
 
