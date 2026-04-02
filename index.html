@@ -1,160 +1,32 @@
+<!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Vastu Compass</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      text-align: center;
-      background: #f3f6fa;
-      margin: 0;
-      padding: 20px;
-    }
-
-    .container {
-      margin-top: 20px;
-    }
-
-    #compassWrapper {
-      width: 300px;
-      height: 300px;
-      margin: auto;
-      position: relative;
-    }
-
-    #compassBg {
-      width: 100%;
-      height: 100%;
-      border-radius: 50%;
-      background-image: url(https://pngimg.com/uploads/compass/compass_PNG25581.png);
-      background-size: cover;
-      box-shadow: 0 0 25px rgba(0, 0, 0, 0.3);
-      position: absolute;
-      top: 0;
-      left: 0;
-    }
-
-    #arrow {
-      width: 6px;
-      height: 130px;
-      background: red;
-      border-radius: 4px;
-      position: absolute;
-      left: 50%;
-      top: 20px;
-      transform-origin: bottom;
-      box-shadow: 0 0 8px rgba(255, 0, 0, 0.5);
-    }
-
-    .direction-label {
-      margin-top: 20px;
-      font-size: 20px;
-      font-weight: bold;
-    }
-
-    select {
-      margin-top: 15px;
-      padding: 10px;
-      font-size: 16px;
-      border-radius: 8px;
-      border: 1px solid #ccc;
-    }
-  .label {
-      position: absolute;
-      font-size: 28px;
-      font-weight: bold;
-      color: #222;
-      text-shadow: 0 0 4px white;
-    }
-    .north { top: 10px; left: 50%; transform: translateX(-50%); }
-    .south { bottom: 10px; left: 50%; transform: translateX(-50%); }
-    .east { right: 10px; top: 50%; transform: translateY(-50%); }
-    .west { left: 10px; top: 50%; transform: translateY(-50%); }
-  </style>
+  <title>Vastu Compass - 8 Division</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <h1>Vastu Compass</h1>
-  <select id="roomSelect">
-      <option value="">Select Home Area</option>
-      <option value="living">Living Room</option>
-      <option value="bedroom">Bedroom</option>
-      <option value="kitchen">Kitchen</option>
-      <option value="toilet">Toilet/Bathroom</option>
-      <option value="puja">Puja Room</option>
-    </select>
-  <div class="container">
-    <div id="compassWrapper">
-      <div id="compassBg"></div>
-      
+  <h1 class="title">Vastu Compass (8 Directions)</h1>
+
+  <div class="compass-container">
+    <div id="compassDial">
+      <div id="needle"></div>
+      <div class="dir-label n">N</div>
+      <div class="dir-label ne">NE</div>
+      <div class="dir-label e">E</div>
+      <div class="dir-label se">SE</div>
+      <div class="dir-label s">S</div>
+      <div class="dir-label sw">SW</div>
+      <div class="dir-label w">W</div>
+      <div class="dir-label nw">NW</div>
     </div>
-
-    <div class="direction-label" id="reading">Heading: 0°</div>
-
-    
-
-    <div id="vastuResult" style="margin-top:20px; font-size:18px;"></div>
   </div>
 
-  <script>
-    function initCompass() {
-      if (typeof DeviceOrientationEvent.requestPermission === "function") {
-        DeviceOrientationEvent.requestPermission().then(permission => {
-          if (permission === "granted") {
-            window.addEventListener("deviceorientation", updateCompass);
-          }
-        });
-      } else {
-        window.addEventListener("deviceorientation", updateCompass);
-      }
-    }
+  <div id="directionText" class="direction-text"></div>
+  <div id="vastuResult" class="vastu-result"></div>
 
-    function updateCompass(event) {
-      let heading = event.alpha;
-
-      if (event.webkitCompassHeading !== undefined) {
-        heading = event.webkitCompassHeading;
-      }
-
-      document.getElementById("compassBg").style.transform = `rotate(${heading}deg)`;
-      document.getElementById("reading").innerText = `Heading: ${Math.round(heading)}°`;
-
-      updateVastuColors(Math.round(heading));
-    }
-
-    function updateVastuColors(angle) {
-      const vastuZones = [
-        { zone: "North", start: 315, end: 45, color: "#4caf50" },
-        { zone: "East", start: 45, end: 135, color: "#ffeb3b" },
-        { zone: "South", start: 135, end: 225, color: "#ff5722" },
-        { zone: "West", start: 225, end: 315, color: "#2196f3" }
-      ];
-
-      for (let v of vastuZones) {
-        if (
-          (v.start < v.end && angle >= v.start && angle < v.end) ||
-          (v.start > v.end && (angle >= v.start || angle < v.end))
-        ) {
-          document.getElementById("reading").style.color = v.color;
-        }
-      }
-    }
-
-    const vastuMeaning = {
-      living: "Living Room is best in North or East. Avoid South-East.",
-      bedroom: "Master Bedroom is best in South-West.",
-      kitchen: "Kitchen should be in South-East (Agni Corner).",
-      toilet: "Toilets are suitable in West or North-West.",
-      puja: "Puja room should be in North-East (Ishan Zone)."
-    };
-
-    document.getElementById("roomSelect").addEventListener("change", function () {
-      const val = this.value;
-      document.getElementById("vastuResult").innerText = vastuMeaning[val] || "";
-    });
-
-    initCompass();
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>
