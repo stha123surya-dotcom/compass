@@ -1,13 +1,13 @@
 /* script.js */
 const sectors = [
-  { name: "North", start: 337.5, end: 22.5, msg: "North: Career, opportunities, progress" },
-  { name: "North-East (Ishan)", start: 22.5, end: 67.5, msg: "Ishan: Puja room, meditation, positivity" },
-  { name: "East", start: 67.5, end: 112.5, msg: "East: Health, vitality, sunrise energy" },
-  { name: "South-East (Aagneya)", start: 112.5, end: 157.5, msg: "Aagneya: Kitchen, fire element" },
-  { name: "South", start: 157.5, end: 202.5, msg: "South: Stability, strength" },
-  { name: "South-West (Nairitya)", start: 202.5, end: 247.5, msg: "Nairitya: Master bedroom, leadership" },
-  { name: "West", start: 247.5, end: 292.5, msg: "West: Gains, profits" },
-  { name: "North-West (Baaybya)", start: 292.5, end: 337.5, msg: "Baaybya: Guest room, movement, change" }
+  { name: "North", range: [337.5, 22.5], best: "Living room, entrance", avoid: "Kitchen" },
+  { name: "North-East (Ishan)", range: [22.5, 67.5], best: "Puja room, meditation", avoid: "Bedroom" },
+  { name: "East", range: [67.5, 112.5], best: "Living room, study", avoid: "Toilet" },
+  { name: "South-East (Aagneya)", range: [112.5, 157.5], best: "Kitchen", avoid: "Bedroom" },
+  { name: "South", range: [157.5, 202.5], best: "Staircase, storage", avoid: "Entrance" },
+  { name: "South-West (Nairitya)", range: [202.5, 247.5], best: "Master bedroom", avoid: "Kitchen" },
+  { name: "West", range: [247.5, 292.5], best: "Kids room, study", avoid: "Puja room" },
+  { name: "North-West (Baaybya)", range: [292.5, 337.5], best: "Guest room", avoid: "Kitchen" }
 ];
 
 function detectDirection(angle) {
@@ -29,7 +29,10 @@ function updateCompass(event) {
 
   if (dir) {
     document.getElementById("directionText").innerText = `${dir.name}`;
-    document.getElementById("vastuResult").innerText = dir.msg;
+    document.getElementById("vastuResult").innerHTML = `
+      <b>Best rooms:</b> ${dir.best}<br>
+      <b>Should avoid:</b> ${dir.avoid}
+    `;
   }
 }
 
