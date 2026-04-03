@@ -1,37 +1,54 @@
-<!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Vastu Compass - 8 Division</title>
-  <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Professional Vastu Compass</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1 class="title">Vastu Compass (8 Directions)</h1>
+    <div class="container">
+        <header>
+            <h1>Vastu Digital Compass</h1>
+            <p>Align your space for harmony</p>
+        </header>
 
-  <div class="compass-container">
-    <div id="compassDial">
-      <div id="needle"></div>
-      <div class="dir-label n">N</div>
-      <div class="dir-label ne">NE</div>
-      <div class="dir-label e">E</div>
-      <div class="dir-label se">SE</div>
-      <div class="dir-label s">S</div>
-      <div class="dir-label sw">SW</div>
-      <div class="dir-label w">W</div>
-      <div class="dir-label nw">NW</div>
+        <div class="selection-panel">
+            <label for="roomSelect">Select Room Type:</label>
+            <select id="roomSelect">
+                <option value="entrance">Main Entrance</option>
+                <option value="kitchen">Kitchen</option>
+                <option value="bedroom">Master Bedroom</option>
+                <option value="pooja">Pooja Room</option>
+                <option value="toilet">Toilet/Bathroom</option>
+            </select>
+        </div>
+
+        <div class="compass-wrapper">
+            <div class="compass-dial" id="compass">
+                <div class="indicator"></div>
+                <div class="marking n">N</div>
+                <div class="marking ne">NE</div>
+                <div class="marking e">E</div>
+                <div class="marking se">SE</div>
+                <div class="marking s">S</div>
+                <div class="marking sw">SW</div>
+                <div class="marking w">W</div>
+                <div class="marking nw">NW</div>
+            </div>
+        </div>
+
+        <div class="info-card">
+            <h2 id="directionText">North</h2>
+            <p id="degreeText">0°</p>
+            <div id="statusBadge" class="badge">Checking...</div>
+            <div id="suggestionBox" class="suggestion-box">
+                Point your device to check room compatibility.
+            </div>
+        </div>
+
+        <button id="startBtn">Start Compass</button>
     </div>
-  </div>
-
-  <div id="directionText" class="direction-text"></div>
-  <div id="vastuResult" class="vastu-result"></div>
-
-  <script src="script.js"></script>
-  <div id="suggestionBox" class="suggestion-box">
-    <h2>Direction Insights</h2>
-    <p id="suggestionText">Rotate your device to see Vastu suggestions.</p>
-  </div>
+    <script src="script.js"></script>
 </body>
 </html>
-
