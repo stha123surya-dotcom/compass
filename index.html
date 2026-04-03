@@ -3,28 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Professional Vastu Compass</title>
+    <title>Advanced Vastu Compass</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
         <header>
             <h1>Vastu Digital Compass</h1>
-            <p>Align your space for harmony</p>
+            <div class="divider"></div>
         </header>
 
         <div class="selection-panel">
-            <label for="roomSelect">Select Room Type:</label>
+            <label for="roomSelect">Select Room/Element:</label>
             <select id="roomSelect">
                 <option value="entrance">Main Entrance</option>
+                <option value="pooja">Pooja Room</option>
                 <option value="kitchen">Kitchen</option>
                 <option value="bedroom">Master Bedroom</option>
-                <option value="pooja">Pooja Room</option>
+                <option value="living">Living Room</option>
+                <option value="dining">Dining Room</option>
+                <option value="store">Store Room</option>
+                <option value="parking">Parking / Porch</option>
+                <option value="staircase">Staircase</option>
+                <option value="servant">Servant Quarter</option>
+                <option value="overhead">Overhead Tank</option>
+                <option value="underground">Underground Tank</option>
+                <option value="septic">Septic Tank</option>
+                <option value="lift">Lift</option>
                 <option value="toilet">Toilet/Bathroom</option>
             </select>
         </div>
 
         <div class="compass-wrapper">
+            <!-- Segment Highlighter Ring -->
+            <div id="statusRing" class="status-ring"></div>
+            
             <div class="compass-dial" id="compass">
                 <div class="indicator"></div>
                 <div class="marking n">N</div>
@@ -41,13 +54,12 @@
         <div class="info-card">
             <h2 id="directionText">North</h2>
             <p id="degreeText">0°</p>
-            <div id="statusBadge" class="badge">Checking...</div>
             <div id="suggestionBox" class="suggestion-box">
-                Point your device to check room compatibility.
+                Tap 'Start' to begin Vastu analysis.
             </div>
         </div>
 
-        <button id="startBtn">Start Compass</button>
+        <button id="startBtn">Enable Compass</button>
     </div>
     <script src="script.js"></script>
 </body>
