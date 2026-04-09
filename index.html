@@ -55,15 +55,25 @@ function submitForm() {
     remarks: document.getElementById("remarks").value
   };
 
-  fetch("https://script.google.com/macros/s/AKfycbxDKmZkWc6mbxOyu-tDIPSnXeCuXXKIUJji0md4SZv_yprS4PIRBsThOJO3s0hFH_fHsQ/exec", {
-    method: "POST",
-    body: JSON.stringify(data)
-  })
-  .then(() => {
-    alert("✅ Attendance Submitted");
-    location.reload();
-  })
-  .catch(() => alert("❌ Error submitting"));
+fetch("https://script.google.com/macros/s/AKfycbxDKmZkWc6mbxOyu-tDIPSnXeCuXXKIUJji0md4SZv_yprS4PIRBsThOJO3s0hFH_fHsQ/exec", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json"
+  },
+  body: JSON.stringify(data)
+})
+.then(res => res.json())
+.then(res => {
+  if (res.status === "success") {
+    alert("✅ Submitted Successfully");
+  } else {
+    alert("❌ " + res.message);
+  }
+})
+.catch(err => {
+  console.error(err);
+  alert("❌ Network Error");
+});
 }
 </script>
 
